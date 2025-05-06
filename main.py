@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 from pydantic import BaseModel
 from models.generador_rutinas import generar_rutina
+import auth  # Import the auth module
 
 # Configuración de la app FastAPI
 app = FastAPI()
@@ -10,11 +11,19 @@ app = FastAPI()
 # Habilitar CORS para permitir que el frontend acceda al backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Permitir todos los dominios (puedes especificar los dominios si lo deseas)
+    allow_origins=["http://localhost:3000"],  # Origen del frontend
     allow_credentials=True,
     allow_methods=["*"],  # Permitir todos los métodos HTTP (GET, POST, PUT, etc.)
     allow_headers=["*"],  # Permitir todos los headers
 )
+
+# Incluir el router de autenticación
+app.include_router(auth.router, tags=["authentication"])
+
+# Punto de entrada para verificar que el servidor está funcionando
+@app.get("/")
+async def root():
+    return {"message": "API de GIM funcionando correctamente"}
 
 # Modelo de entrada
 class Usuario(BaseModel):
