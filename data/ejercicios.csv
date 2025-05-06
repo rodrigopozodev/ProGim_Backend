@@ -1,1 +1,7 @@
 nombre,grupo_muscular,nivel,material,tipo,contraindicaciones,calorias
+nombre,grupo_muscular,nivel,material,tipo,contraindicaciones,calorias
+sentadillas,piernas,principiante,barra,compuesto,,30
+press_banca,pecho,principiante,barra,compuesto,,40
+dominadas,espalda,intermedio,barra,compuesto,lesión espalda,50
+curl_biceps,brazos,principiante,mancuernas,aislado,,20
+peso_muerto,piernas,intermedio,barra,compuesto,lesión lumbar,60
