@@ -1,10 +1,20 @@
-import os
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+import os
 from pydantic import BaseModel
 from models.generador_rutinas import generar_rutina
-from api.endpoints import generar_rutina_api
 
+# Configuración de la app FastAPI
 app = FastAPI()
+
+# Habilitar CORS para permitir que el frontend acceda al backend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Permitir todos los dominios (puedes especificar los dominios si lo deseas)
+    allow_credentials=True,
+    allow_methods=["*"],  # Permitir todos los métodos HTTP (GET, POST, PUT, etc.)
+    allow_headers=["*"],  # Permitir todos los headers
+)
 
 # Modelo de entrada
 class Usuario(BaseModel):
@@ -22,10 +32,7 @@ class Usuario(BaseModel):
 
 @app.post("/generar-rutina")
 async def generar_rutina_api(usuario: Usuario):
-    # Convertimos el objeto 'usuario' en un diccionario
     usuario_dict = usuario.dict()
-    
-    # Generamos la rutina personalizada
     rutina = generar_rutina(usuario_dict)
     
     return rutina
