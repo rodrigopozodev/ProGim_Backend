@@ -1,9 +1,8 @@
-# Endpoints de FastAPI
-from fastapi import FastAPI
+from fastapi import APIRouter
 from pydantic import BaseModel
 import random
 
-app = FastAPI()
+router = APIRouter()
 
 # Modelo de entrada
 class Usuario(BaseModel):
@@ -27,8 +26,8 @@ ejercicios = {
 }
 
 # Generación de rutina básica
-@app.post("/generar-rutina")
-async def generar_rutina(usuario: Usuario):
+@router.post("/generar-rutina")
+async def generar_rutina_api(usuario: Usuario):
     rutina = {}
     dias = ["lunes", "martes", "miércoles", "jueves", "viernes"]
 

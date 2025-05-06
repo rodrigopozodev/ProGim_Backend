@@ -1,4 +1,3 @@
-# Lógica del generador de rutinas
 import random
 
 # Base de datos de ejercicios (esto se puede expandir o importar desde un CSV)

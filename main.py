@@ -1,7 +1,7 @@
-# Punto de entrada principal
 from fastapi import FastAPI
 from pydantic import BaseModel
 from models.generador_rutinas import generar_rutina
+from api.endpoints import generar_rutina_api
 
 app = FastAPI()
 
